@@ -1,0 +1,39 @@
+Incident Response Accelerator — "First Responder" Gem
+The Problem
+When a P1/P2 incident fires at 2 AM, the on-call engineer is under pressure and often unfamiliar with the failing system. They spend precious minutes searching Slack threads, reading outdated runbooks, and paging senior engineers who have tribal knowledge. Meanwhile, customer impact grows. Multiply this across every team at Capital One and you're looking at thousands of hours of degraded response time per year.
+How the Gem Works
+Phase 1 — Triage (first 60 seconds)
+The engineer pastes in the alert details (or describes symptoms), and the Gem immediately provides a structured triage: likely affected systems, blast radius estimate, suggested severity level, and the most relevant past incidents that looked similar. It answers the critical first question — "What am I dealing with?"
+Phase 2 — Guided Diagnosis
+The Gem walks the engineer through a diagnostic decision tree. Based on symptoms, it suggests specific things to check — dashboards to open, logs to query, metrics to compare. It can generate Splunk/Datadog queries tailored to the service. Instead of an engineer fumbling through docs, they get targeted next steps.
+Phase 3 — Communication Drafts
+Incident comms are stressful and time-consuming. The Gem auto-drafts stakeholder updates, status page messages, and escalation requests using a consistent format. The engineer just reviews and sends, saving 10-15 minutes per update cycle.
+Phase 4 — Postmortem Generation
+After resolution, the Gem drafts the postmortem from the conversation history — timeline, root cause, what worked, what didn't, and suggested action items. This turns a task engineers dread (and delay for weeks) into something that's 80% done immediately.
+
+Example Interaction
+
+Engineer: "We're getting a spike in 503s from the rewards-service in us-east-1. Latency is through the roof. Started about 10 minutes ago."
+Gem: "Based on your description, here's my initial assessment:
+Likely pattern: Downstream dependency failure or connection pool exhaustion. rewards-service has had 3 similar incidents in the past 12 months — two were caused by the points-ledger database hitting connection limits, one was a circuit breaker misconfiguration after a deploy.
+Suggested first checks:
+
+Was there a deployment in the last 2 hours? (Check your CI/CD pipeline)
+Check points-ledger DB connection pool metrics in Datadog — here's the query: [generated query]
+Check downstream service health for points-ledger and offer-engine
+
+Recent change risk: I see a deploy to rewards-service was pushed 47 minutes ago. This correlates with your symptom onset.
+Suggested severity: P1 — customer-facing impact with revenue implications.
+Want me to draft an initial stakeholder notification?"
+
+
+The Force Multiplier Pitch
+Scale: Every engineering team at Capital One runs on-call rotations. This Gem helps all of them, not just one team. It gets smarter over time as more incidents feed into it.
+Measurable impact:
+
+Reduction in mean-time-to-resolution (MTTR) — even a 15% improvement across the org is enormous
+Fewer unnecessary escalations (senior engineers get paged less for things juniors can now handle)
+Postmortem completion rate goes up (compliance and learning improve)
+On-call experience improves, which helps retention
+
+Scalability: The Gem doesn't need to be rebuilt per team. It works with any service if teams contribute their runbooks and past incidents. One Gem, hundreds of teams.
