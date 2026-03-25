@@ -1,0 +1,229 @@
+
+<style>
+.layer-label { font-size: 10px; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase; color: var(--color-text-tertiary); writing-mode: vertical-rl; text-orientation: mixed; transform: rotate(180deg); display: flex; align-items: center; justify-content: center; }
+.pac-lane { display: flex; gap: 0; margin-bottom: 0; }
+.lane-tag { width: 28px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; border-radius: var(--border-radius-md) 0 0 var(--border-radius-md); }
+.lane-body { flex: 1; border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0; padding: 14px 16px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.node-box { border-radius: var(--border-radius-md); padding: 9px 13px; font-size: 12px; font-weight: 500; cursor: pointer; border: 0.5px solid transparent; transition: opacity 0.15s; line-height: 1.4; }
+.node-box:hover { opacity: 0.75; }
+.node-box.purple { background: #EEEDFE; color: #3C3489; border-color: #AFA9EC; }
+.node-box.teal   { background: #E1F5EE; color: #085041; border-color: #5DCAA5; }
+.node-box.blue   { background: #E6F1FB; color: #0C447C; border-color: #85B7EB; }
+.node-box.amber  { background: #FAEEDA; color: #633806; border-color: #EF9F27; }
+.node-box.coral  { background: #FAECE7; color: #712B13; border-color: #F0997B; }
+.node-box.gray   { background: var(--color-background-secondary); color: var(--color-text-primary); border-color: var(--color-border-secondary); }
+.node-box.green  { background: #EAF3DE; color: #27500A; border-color: #97C459; }
+.node-sub { font-size: 10px; font-weight: 400; opacity: 0.75; margin-top: 2px; }
+.arrow { font-size: 16px; color: var(--color-text-tertiary); flex-shrink: 0; line-height: 1; }
+.arrow-down { text-align: center; color: var(--color-text-tertiary); font-size: 18px; padding: 2px 0; }
+.diff-badge { display: inline-block; font-size: 10px; padding: 2px 7px; border-radius: 10px; font-weight: 500; background: #FAEEDA; color: #633806; border: 0.5px solid #EF9F27; margin-left: 6px; }
+.new-badge  { display: inline-block; font-size: 10px; padding: 2px 7px; border-radius: 10px; font-weight: 500; background: #EAF3DE; color: #27500A; border: 0.5px solid #97C459; margin-left: 6px; }
+.lane-divider { height: 8px; }
+.mcp-pill { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 20px; background: #EEEDFE; color: #3C3489; border: 0.5px solid #AFA9EC; }
+.eval-pill { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 20px; background: #EAF3DE; color: #27500A; border: 0.5px solid #97C459; }
+@media (prefers-color-scheme: dark) {
+  .node-box.purple { background: #26215C; color: #CECBF6; border-color: #534AB7; }
+  .node-box.teal   { background: #04342C; color: #9FE1CB; border-color: #0F6E56; }
+  .node-box.blue   { background: #042C53; color: #B5D4F4; border-color: #185FA5; }
+  .node-box.amber  { background: #412402; color: #FAC775; border-color: #854F0B; }
+  .node-box.coral  { background: #4A1B0C; color: #F5C4B3; border-color: #993C1D; }
+  .node-box.green  { background: #173404; color: #C0DD97; border-color: #3B6D11; }
+  .diff-badge { background: #412402; color: #FAC775; border-color: #854F0B; }
+  .new-badge  { background: #173404; color: #C0DD97; border-color: #3B6D11; }
+  .mcp-pill   { background: #26215C; color: #CECBF6; border-color: #534AB7; }
+  .eval-pill  { background: #173404; color: #C0DD97; border-color: #3B6D11; }
+}
+</style>
+
+<!-- LAYER 1: POLICY SOURCES -->
+<div class="pac-lane">
+  <div class="lane-tag" style="background:#EEEDFE; border: 0.5px solid #AFA9EC;">
+    <span class="layer-label" style="color:#3C3489;">Source</span>
+  </div>
+  <div class="lane-body" style="background: var(--color-background-secondary); border: 0.5px solid var(--color-border-tertiary);">
+    <div class="node-box purple" onclick="sendPrompt('What are internal policies in policy as code?')">
+      Internal policies
+      <div class="node-sub">HR, ops, conduct</div>
+    </div>
+    <div class="arrow">›</div>
+    <div class="node-box purple" onclick="sendPrompt('What are regulatory laws in policy as code?')">
+      Regulatory laws
+      <div class="node-sub">GDPR, SOX, HIPAA</div>
+    </div>
+    <div class="arrow">›</div>
+    <div class="node-box purple" onclick="sendPrompt('What are non-regulatory laws in policy as code?')">
+      Non-regulatory laws
+      <div class="node-sub">Industry standards</div>
+    </div>
+    <div style="flex:1"></div>
+    <div style="font-size:12px; color:var(--color-text-tertiary); display:flex; align-items:center; gap:6px;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      Stored in Google Drive
+    </div>
+  </div>
+</div>
+
+<div class="arrow-down">↓</div>
+
+<!-- LAYER 2: INGESTION & DIFF -->
+<div class="pac-lane">
+  <div class="lane-tag" style="background:#E1F5EE; border: 0.5px solid #5DCAA5;">
+    <span class="layer-label" style="color:#085041;">Ingest</span>
+  </div>
+  <div class="lane-body" style="background: var(--color-background-secondary); border: 0.5px solid var(--color-border-tertiary); flex-wrap: nowrap; gap: 8px;">
+    <div class="node-box teal" style="min-width:140px;" onclick="sendPrompt('How does policy ingestion from Google Drive work?')">
+      Drive watcher
+      <div class="node-sub">Monitors for changes</div>
+    </div>
+    <div class="arrow">›</div>
+    <div style="display:flex; flex-direction:column; gap:6px; flex:1;">
+      <div style="display:flex; align-items:center; gap:8px;">
+        <div class="node-box green" style="flex:1;" onclick="sendPrompt('How are new policies authored in policy as code?')">
+          New policy <span class="new-badge">NEW</span>
+          <div class="node-sub">Full doc → author policy as code</div>
+        </div>
+      </div>
+      <div style="display:flex; align-items:center; gap:8px;">
+        <div class="node-box amber" style="flex:1;" onclick="sendPrompt('How does policy diff work when a document is updated?')">
+          Updated policy <span class="diff-badge">DIFF</span>
+          <div class="node-sub">Old vs new → targeted policy update</div>
+        </div>
+      </div>
+    </div>
+    <div class="arrow">›</div>
+    <div class="node-box teal" style="min-width:130px;" onclick="sendPrompt('What does the policy authoring engine do?')">
+      Policy authoring
+      <div class="node-sub">Structured policy code</div>
+    </div>
+  </div>
+</div>
+
+<div class="arrow-down">↓</div>
+
+<!-- LAYER 3: APPROVAL -->
+<div class="pac-lane">
+  <div class="lane-tag" style="background:#FAEEDA; border: 0.5px solid #EF9F27;">
+    <span class="layer-label" style="color:#633806;">Approve</span>
+  </div>
+  <div class="lane-body" style="background: var(--color-background-secondary); border: 0.5px solid var(--color-border-tertiary);">
+    <div class="node-box amber" onclick="sendPrompt('What triggers a policy review in the approval workflow?')">
+      Policy review
+      <div class="node-sub">Legal + automated check</div>
+    </div>
+    <div class="arrow">›</div>
+    <div class="node-box amber" onclick="sendPrompt('Who approves policies in a policy as code approval workflow?')">
+      Approver sign-off
+      <div class="node-sub">Owner accepts / rejects</div>
+    </div>
+    <div class="arrow">›</div>
+    <div class="node-box green" onclick="sendPrompt('What happens when a policy is approved and published?')">
+      Published to policy hub
+      <div class="node-sub">Versioned, immutable</div>
+    </div>
+    <div style="flex:1"></div>
+    <div class="node-box coral" style="font-size:11px;" onclick="sendPrompt('What happens when a policy is rejected in the approval workflow?')">
+      Rejected → back to authoring
+      <div class="node-sub">With reviewer comments</div>
+    </div>
+  </div>
+</div>
+
+<div class="arrow-down">↓</div>
+
+<!-- LAYER 4: POLICY HUB -->
+<div class="pac-lane">
+  <div class="lane-tag" style="background:#E6F1FB; border: 0.5px solid #85B7EB;">
+    <span class="layer-label" style="color:#0C447C;">Hub</span>
+  </div>
+  <div class="lane-body" style="background: var(--color-background-secondary); border: 0.5px solid var(--color-border-tertiary);">
+    <div class="node-box blue" onclick="sendPrompt('What is stored in the policy hub?')">
+      Policy hub
+      <div class="node-sub">Versioned policy store</div>
+    </div>
+    <div class="arrow">›</div>
+    <div class="node-box blue" onclick="sendPrompt('What categories of policies exist in a policy hub?')">
+      Internal
+      <div class="node-sub">HR, ops, conduct</div>
+    </div>
+    <div class="arrow">+</div>
+    <div class="node-box blue" onclick="sendPrompt('How are regulatory policies stored in a policy hub?')">
+      Regulatory
+      <div class="node-sub">GDPR, SOX etc.</div>
+    </div>
+    <div class="arrow">+</div>
+    <div class="node-box blue" onclick="sendPrompt('How are non-regulatory policies stored?')">
+      Non-regulatory
+      <div class="node-sub">Standards, guidelines</div>
+    </div>
+    <div style="flex:1"></div>
+    <div class="node-box gray" style="font-size:11px;">
+      Scan on publish
+      <div class="node-sub">Conflict + lint check</div>
+    </div>
+  </div>
+</div>
+
+<div class="arrow-down">↓</div>
+
+<!-- LAYER 5: CONTINUOUS EVALUATION -->
+<div class="pac-lane">
+  <div class="lane-tag" style="background:#EAF3DE; border: 0.5px solid #97C459;">
+    <span class="layer-label" style="color:#27500A;">Evaluate</span>
+  </div>
+  <div class="lane-body" style="background: var(--color-background-secondary); border: 0.5px solid var(--color-border-tertiary); flex-wrap: wrap; gap: 10px;">
+    <div style="width:100%; display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+      <div class="node-box green" onclick="sendPrompt('How do applications continuously evaluate policies?')">
+        App policy evaluator
+        <div class="node-sub">Runtime compliance check</div>
+      </div>
+      <div class="arrow">›</div>
+      <div class="node-box green" onclick="sendPrompt('What happens when an application violates a policy at runtime?')">
+        Policy decision point
+        <div class="node-sub">Allow / deny / alert</div>
+      </div>
+      <div class="arrow">›</div>
+      <div class="node-box green" onclick="sendPrompt('How are policy violations reported and remediated?')">
+        Compliance log
+        <div class="node-sub">Violations + audit trail</div>
+      </div>
+      <div style="flex:1"></div>
+      <div class="eval-pill">Continuous — not just at deploy</div>
+    </div>
+  </div>
+</div>
+
+<div class="arrow-down">↓</div>
+
+<!-- LAYER 6: MCP / DEVELOPER -->
+<div class="pac-lane">
+  <div class="lane-tag" style="background:#EEEDFE; border: 0.5px solid #AFA9EC;">
+    <span class="layer-label" style="color:#3C3489;">MCP</span>
+  </div>
+  <div class="lane-body" style="background: var(--color-background-secondary); border: 0.5px solid var(--color-border-tertiary); flex-wrap:wrap; gap: 10px;">
+    <div style="width:100%; display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+      <div class="node-box purple" onclick="sendPrompt('How does MCP integrate policy as code into developer workflows?')">
+        MCP policy server
+        <div class="node-sub">Exposes policy tools to agents</div>
+      </div>
+      <div class="arrow">›</div>
+      <div class="node-box purple" onclick="sendPrompt('What can a developer do with MCP policy tools in their IDE?')">
+        IDE / agent context
+        <div class="node-sub">Policy-aware suggestions</div>
+      </div>
+      <div class="arrow">›</div>
+      <div class="node-box purple" onclick="sendPrompt('How does policy pre-check work before a merge request is submitted?')">
+        Pre-MR policy check
+        <div class="node-sub">Catch violations before review</div>
+      </div>
+      <div class="arrow">›</div>
+      <div class="node-box purple" onclick="sendPrompt('How does MCP surface policy feedback inline to developers?')">
+        Inline feedback
+        <div class="node-sub">Fix suggestions in context</div>
+      </div>
+      <div style="flex:1"></div>
+      <div class="mcp-pill">Developer-native</div>
+    </div>
+  </div>
+</div>
+
+<div style="height: 12px;"></div>
